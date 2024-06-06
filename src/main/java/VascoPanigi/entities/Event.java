@@ -10,33 +10,35 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "events")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "event_type")
 public class Event {
     @Id
     @GeneratedValue
-    private UUID event_id;
+    protected UUID event_id;
 
     @Column(name = "title")
-    private String title;
+    protected String title;
 
     @Column(name = "event_date")
-    private LocalDate event_date;
+    protected LocalDate event_date;
 
     @Column(name = "description")
-    private String description;
+    protected String description;
 
-    @Column(name = "event_type")
+    @Column(name = "event_type", insertable=false, updatable=false)
     @Enumerated(EnumType.STRING)
-    private EventType event_type;
+    protected EventType event_type;
 
     @Column(name = "max_participants")
-    private int max_participants;
+    protected int max_participants;
 
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+    protected Location location;
 
     @ManyToMany(mappedBy = "event")
-    private List<Participation> participation_list;
+    protected List<Participation> participation_list;
 
     public Event() {
     }

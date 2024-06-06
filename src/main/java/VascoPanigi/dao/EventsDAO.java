@@ -1,5 +1,6 @@
 package VascoPanigi.dao;
 
+import VascoPanigi.entities.Concert;
 import VascoPanigi.entities.Event;
 import VascoPanigi.exceptions.EventNotFoundException;
 import jakarta.persistence.EntityManager;
@@ -36,5 +37,13 @@ public class EventsDAO {
         em.remove(found);
         transaction.commit();
         System.out.println("The event " + found.getTitle() + " has been eliminated from our system!");
+    }
+
+    public Concert getConcertsInStreaming(UUID concertId){
+        Concert concert = em.find(Concert.class, concertId);
+        if (concert == null) throw new EventNotFoundException(concertId);
+
+        
+        return concert;
     }
 }

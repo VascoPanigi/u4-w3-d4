@@ -11,19 +11,19 @@ import java.util.UUID;
 public class Participation {
     @Id
     @GeneratedValue
-    private UUID participation_id;
+    protected UUID participation_id;
 
     @ManyToOne
     @JoinColumn(name = "individual_id", nullable = false)
-    private Individual individual;
+    protected Individual individual;
 
     @Column(name = "participation_state")
     @Enumerated(EnumType.STRING)
-    private ParticipationState participation_state;
+    protected ParticipationState participation_state;
 
     @ManyToOne
     @JoinColumn(name= "event_id", nullable = false)
-    private Event event;
+    protected Event event;
 
     public Participation(Individual individual, Event event, ParticipationState participation_state) {
         this.individual = individual;

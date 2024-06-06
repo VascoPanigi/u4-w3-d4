@@ -11,27 +11,31 @@ import java.util.UUID;
 public class Individual {
     @Id
     @GeneratedValue
-    private UUID individual_id;
+    protected UUID individual_id;
 
     @Column(name = "name")
-    private String name;
+    protected String name;
 
     @Column(name = "surname")
-    private String surname;
+    protected String surname;
 
     @Column(name = "email")
-    private String email;
+    protected String email;
 
     @Column(name = "birth_date")
-    private LocalDate birth_date;
+    protected LocalDate birth_date;
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
-    private IndividualsGender gender;
+    protected IndividualsGender gender;
 
     @OneToMany(mappedBy = "individual")
-    private List<Participation> participation_list;
+    protected List<Participation> participation_list;
 
+
+    @ManyToOne
+    @JoinColumn(name = "athletics_competition")
+    private Athletics_competition athletics_competition;
 
     public Individual(String name, String surname, String email, LocalDate birth_date, IndividualsGender gender) {
         this.name = name;

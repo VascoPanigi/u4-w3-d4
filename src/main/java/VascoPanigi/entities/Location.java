@@ -10,17 +10,17 @@ public class Location {
 
     @Id
     @GeneratedValue
-    private UUID location_id;
+    protected UUID location_id;
 
     @Column(name = "location_name")
-    private String location_name;
+    protected String location_name;
 
     @Column(name = "location_city")
-    private String location_city;
+    protected String location_city;
 
     //just one location for many events daje
     @OneToMany(mappedBy = "location")
-    private List<Event> event_list;
+    protected List<Event> event_list;
 
     public Location(String location_name, String location_city) {
         this.location_name = location_name;
