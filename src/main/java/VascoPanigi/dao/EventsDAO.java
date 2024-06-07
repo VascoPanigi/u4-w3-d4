@@ -5,6 +5,7 @@ import VascoPanigi.entities.Event;
 import VascoPanigi.exceptions.EventNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
 import java.util.UUID;
 
@@ -39,11 +40,15 @@ public class EventsDAO {
         System.out.println("The event " + found.getTitle() + " has been eliminated from our system!");
     }
 
-    public Concert getConcertsInStreaming(UUID concertId){
-        Concert concert = em.find(Concert.class, concertId);
-        if (concert == null) throw new EventNotFoundException(concertId);
+//    public Concert getConcertsInStreaming(){
+//        TypedQuery<Concert> query = em.createQuery("SELECT c FROM Concert c", Concert.class); // SELECT * FROM animals WHERE tipo_animale = 'Cane' (Per la single table)
+//
+//        if (concert == null) throw new EventNotFoundException(concertId);
+////        "SELECT e FROM Evento e WHERE e.inStreaming = :inStreaming"
+//
+//
+//        return concert;
+//    }
 
-        
-        return concert;
-    }
+//    TypedQuery<Concert> query = entityManager.createQuery("SELECT c FROM Concert c WHERE c.genre = :genre", Concert.class);
 }

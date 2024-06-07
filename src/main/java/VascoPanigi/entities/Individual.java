@@ -29,13 +29,14 @@ public class Individual {
     @Enumerated(EnumType.STRING)
     protected IndividualsGender gender;
 
-    @OneToMany(mappedBy = "individual")
-    protected List<Participation> participation_list;
+
+    @ManyToMany(mappedBy = "athletes")
+    protected List<Athletics_competition> athletics_competition;
 
 
-    @ManyToOne
-    @JoinColumn(name = "athletics_competition")
-    private Athletics_competition athletics_competition;
+    @OneToMany(mappedBy = "winner")
+    private List<Athletics_competition> won_competitions;
+
 
     public Individual(String name, String surname, String email, LocalDate birth_date, IndividualsGender gender) {
         this.name = name;

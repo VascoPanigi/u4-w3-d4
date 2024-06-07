@@ -11,12 +11,31 @@ import java.util.List;
 @DiscriminatorValue("Athletics_competition")
 public class Athletics_competition extends Event{
 
-    @OneToMany(mappedBy = "athletics_competition")
-    private List<Individual> athletes;
+//    CREIAMO IL MANY TO MANY TRA ATHLETICS COMPETITION E INDIVIDUALS
 
-    @OneToOne
-    @JoinColumn(name = "winner")
-    private Individual winner;
+@ManyToMany
+@JoinTable(
+        name = "competition_participants",
+        joinColumns = @JoinColumn(name = "event_id"),
+        inverseJoinColumns = @JoinColumn(name="individual_id")
+)
+private List<Individual> athletes;
+
+@ManyToOne
+@JoinColumn(name="individual_id")
+private Individual winner;
+
+
+//    @OneToMany(mappedBy = "athletics_competition")
+//    private List<Individual> athletes;
+
+
+//    private List<Individual> athletes;
+
+
+//    @OneToOne
+//    @JoinColumn(name = "winner")
+//    private Individual winner;
 
     public Athletics_competition(){}
 
